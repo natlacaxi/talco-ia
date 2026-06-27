@@ -5,12 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Talco Intelligence - Accès</title>
     <style>
-        /* Réinitialisation */
+        /* Réinitialisation et optimisation des polices */
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            /* Utilisation de polices système modernes et haut de gamme avec fallback propre */
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            /* Lissage des polices pour un rendu plus net et haut de gamme */
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
         }
 
         /* Style global */
@@ -41,8 +45,8 @@
 
         .card {
             background: rgba(15, 15, 25, 0.7);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
             padding: 40px;
             border-radius: 16px;
             border: 1px solid rgba(255, 255, 255, 0.05);
@@ -60,8 +64,9 @@
 
         h2 {
             margin-bottom: 25px;
-            font-size: 24px;
-            font-weight: 600;
+            font-size: 26px; /* Légèrement agrandi pour l'équilibre visuel */
+            font-weight: 700; /* Plus d'impact sur le titre */
+            letter-spacing: -0.02em; /* Rendu plus moderne */
             background: linear-gradient(135deg, #a78bfa, #f472b6);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -78,9 +83,10 @@
             margin-bottom: 18px;
             cursor: pointer;
             font-size: 14px;
-            line-height: 1.5;
+            line-height: 1.6; /* Amélioration de la lisibilité des longs blocs de texte */
+            letter-spacing: 0.01em;
             color: #9ca3af;
-            transition: color 0.2s;
+            transition: color 0.2s ease;
         }
 
         .checkbox-item:hover {
@@ -88,8 +94,8 @@
         }
 
         .checkbox-item input {
-            margin-top: 2px;
-            margin-right: 12px;
+            margin-top: 3px;
+            margin-right: 14px;
             min-width: 18px;
             min-height: 18px;
             cursor: pointer;
@@ -99,15 +105,16 @@
         .btn-access {
             display: inline-block;
             width: 100%;
-            padding: 14px;
+            padding: 15px;
             font-size: 15px;
-            font-weight: bold;
+            font-weight: 600;
+            letter-spacing: 0.02em;
             color: white;
             background: linear-gradient(135deg, #7c3aed 0%, #c084fc 100%);
             border: none;
             border-radius: 8px;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             box-shadow: 0 4px 15px rgba(124, 58, 237, 0.3);
         }
 
@@ -144,17 +151,16 @@
             background: radial-gradient(circle, #ff003c 20%, #7a001e 100%);
             opacity: 1;
             pointer-events: auto;
-            /* Simulation de lignes de scan TV rétro/hack */
             background-size: 100% 4px;
             background-image: linear-gradient(to bottom, rgba(255, 0, 60, 0.9) 50%, rgba(0, 0, 0, 0.4) 50%);
         }
 
-        /* ÉTAPE 2 : Fondu au noir direct (0.5s) */
+        /* ÉTAPE 2 : Fondu au noir d'exactement 1 seconde (1.0s) */
         .fade-overlay.fade-black {
             background-color: #000000;
             opacity: 1;
             pointer-events: auto;
-            transition: background-color 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+            transition: background-color 1.0s cubic-bezier(0.25, 1, 0.5, 1);
         }
     </style>
 </head>
@@ -164,13 +170,13 @@
 
     <div class="card" id="mainCard">
         <h2>Talco Intelligence</h2>
-        
+         
         <div class="checkbox-container">
             <label class="checkbox-item">
                 <input type="checkbox" id="cond1" onchange="checkConditions()">
                 <span>J'accepte les conditions d'utilisation de Talco-Intelligence. Je m'engage à respecter le fonctionnement ainsi que ces failles. J'accepte d'utiliser Talco-Intelligence avec honnêteté à l'égard des clés API.</span>
             </label>
-            
+             
             <label class="checkbox-item">
                 <input type="checkbox" id="cond2" onchange="checkConditions()">
                 <span>Je confirme transmettre à Talco-Intelligence mes fichiers personnels, mes discussions privés, mon historique associé à mon compte principale, ma géolocalisation, mes données de suivi de santé, mon gestionnaire de mot de passe, mes fichiers de sauvegarde ainsi que mes coordonnés bancaire.</span>
@@ -194,21 +200,21 @@
         function startTransition() {
             const overlay = document.getElementById('overlay');
             const card = document.getElementById('mainCard');
-            
+             
             // 1. Déclenche le flash méchant rouge strié ET fait trembler violemment l'interface
             overlay.classList.add('evil-flash');
             card.classList.add('compromised');
 
-            // 2. Après un flash très court (150ms), basculement immédiat vers le fondu au noir de 0.5s
+            // 2. Après un flash très court (150ms), basculement vers le fondu au noir qui dure 1 seconde (1000ms)
             setTimeout(() => {
                 overlay.classList.remove('evil-flash');
                 overlay.classList.add('fade-black');
             }, 150); 
 
-            // 3. Redirection à la fin précise du fondu au noir (150ms + 500ms = 650ms)
+            // 3. Redirection à la fin précise du fondu au noir (150ms + 1000ms = 1150ms)
             setTimeout(() => {
-                window.location.href = "https://df21hdfhd651bhdsbh165d1fh651hdsxfb651.netlify.app";
-            }, 650);
+                window.location.href = "https://a6d56g5j1i68d8q2v6n51u9fr2h2169q92d0n.netlify.app/";
+            }, 1150);
         }
     </script>
 
