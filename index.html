@@ -1,222 +1,713 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Talco Intelligence - Accès</title>
-    <style>
-        /* Réinitialisation et optimisation des polices */
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            /* Utilisation de polices système modernes et haut de gamme avec fallback propre */
-            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            /* Lissage des polices pour un rendu plus net et haut de gamme */
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Talco-Intelligence</title>
+<link rel="icon" type="image/png" href="data:image/png;base64,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"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#07090f;--surface:#0d1120;--card:#111827;
+  --border:rgba(255,255,255,0.07);
+  --blue:#6ea8fe;--purp:#a78bfa;--pink:#f472b6;--cyan:#34d399;
+  --amber:#fbbf24;--red:#f87171;
+  --text:#f1f5f9;--muted:#64748b;--soft:#94a3b8;
+  --grad:linear-gradient(135deg,#6ea8fe,#a78bfa,#f472b6);
+  --sidebar-w:260px;
+}
+html,body{height:100%;overflow:hidden}
+body{font-family:'Inter',sans-serif;color:var(--text);display:flex;flex-direction:column;position:relative;}
 
-        /* Style global */
-        body {
-            background-color: #0b0b10;
-            background-image: 
-                radial-gradient(circle at 80% 80%, rgba(118, 75, 162, 0.15), transparent 50%),
-                radial-gradient(circle at 20% 50%, rgba(255, 94, 98, 0.08), transparent 40%),
-                radial-gradient(circle at 50% 20%, rgba(102, 126, 234, 0.05), transparent 50%);
-            background-size: cover;
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: #ffffff;
-            overflow: hidden;
-        }
+#intro-screen{position:fixed;inset:0;z-index:9999;background:#000;display:flex;align-items:center;justify-content:center;animation:introFade 1s ease 0.6s forwards;pointer-events:none;}
+@keyframes introFade{0%{opacity:1}100%{opacity:0;visibility:hidden}}
+.intro-logo{display:flex;align-items:center;gap:.8rem;font-family:'Space Grotesk',sans-serif;font-size:1.6rem;font-weight:700;letter-spacing:-.03em;animation:introLogoIn .45s ease both;}
+@keyframes introLogoIn{from{opacity:0;transform:scale(.85)}to{opacity:1;transform:scale(1)}}
+.intro-logo svg{width:44px;height:44px;filter:drop-shadow(0 0 18px rgba(110,168,254,.8));}
+.intro-grad{background:linear-gradient(135deg,#6ea8fe,#a78bfa,#f472b6);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
 
-        /* Animation de tremblement "Hack" pour la carte */
-        @keyframes glitch-shake {
-            0% { transform: translate(0, 0) skew(0deg); }
-            20% { transform: translate(-8px, 5px) skew(-3deg); }
-            40% { transform: translate(8px, -5px) skew(5deg); }
-            60% { transform: translate(-5px, -3px) skew(-1deg); }
-            80% { transform: translate(6px, 4px) skew(3deg); }
-            100% { transform: translate(0, 0) skew(0deg); }
-        }
+.bg-img{position:fixed;inset:0;z-index:0;background:url('https://res.cloudinary.com/dmvoedoe6/image/upload/v1782481199/abstract-multicolor-wavy-line-of-light-neon-glowing-lines-magic-energy-space-light-concept-abstract-background-wallpaper-design-generative-ai-illustration-free-photo_xzkdj1.jpg') center/cover no-repeat;filter:brightness(.35) saturate(1.2);}
+.bg-overlay{position:fixed;inset:0;z-index:0;background:rgba(7,9,15,.55);}
+.app{position:relative;z-index:1;display:flex;height:100vh;overflow:hidden;}
 
-        .card {
-            background: rgba(15, 15, 25, 0.7);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            padding: 40px;
-            border-radius: 16px;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
-            width: 100%;
-            max-width: 450px;
-            text-align: center;
-            z-index: 2;
-        }
+.sidebar{width:var(--sidebar-w);background:rgba(7,9,15,.97);border-right:1px solid var(--border);backdrop-filter:blur(28px);display:flex;flex-direction:column;position:fixed;top:0;left:0;bottom:0;z-index:200;transform:translateX(-100%);transition:transform .28s cubic-bezier(.4,0,.2,1);}
+.sidebar.open{transform:translateX(0);}
+.sidebar-backdrop{display:none;position:fixed;inset:0;z-index:199;background:rgba(0,0,0,.5);backdrop-filter:blur(2px);}
+.sidebar-backdrop.open{display:block;}
+.sidebar-header{padding:1rem;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:.5rem;}
+.sidebar-title{font-size:.75rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;}
+.sidebar-header-right{display:flex;align-items:center;gap:.4rem;}
+.new-chat-btn{padding:.35rem .75rem;border-radius:8px;border:1px solid var(--border);background:rgba(110,168,254,.08);color:var(--blue);font-size:.75rem;cursor:pointer;transition:all .2s;}
+.new-chat-btn:hover{background:rgba(110,168,254,.18);border-color:rgba(110,168,254,.35);}
+.sidebar-close-btn{width:26px;height:26px;border-radius:7px;border:1px solid var(--border);background:rgba(255,255,255,.04);display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--muted);font-size:.85rem;line-height:1;transition:all .2s;flex-shrink:0;}
+.sidebar-close-btn:hover{background:rgba(248,113,113,.12);border-color:rgba(248,113,113,.25);color:var(--red);}
+.sidebar-body{flex:1;overflow-y:auto;padding:.5rem;}
+.sidebar-body::-webkit-scrollbar{width:3px;}
+.sidebar-body::-webkit-scrollbar-thumb{background:rgba(255,255,255,.07);border-radius:3px;}
+.history-group{margin-bottom:.5rem;}
+.history-label{font-size:.65rem;color:var(--muted);padding:.3rem .5rem;text-transform:uppercase;letter-spacing:.07em;display:block;}
+.history-item{display:flex;align-items:center;gap:.5rem;padding:.5rem .65rem;border-radius:9px;cursor:pointer;transition:all .2s;border:1px solid transparent;margin-bottom:2px;user-select:none;}
+.history-item:hover{background:rgba(255,255,255,.05);border-color:var(--border);}
+.history-item.active{background:rgba(110,168,254,.08);border-color:rgba(110,168,254,.2);}
+.history-item-icon{font-size:.85rem;opacity:.6;flex-shrink:0;}
+.history-item-text{flex:1;font-size:.78rem;color:var(--soft);overflow:hidden;white-space:nowrap;text-overflow:ellipsis;}
+.history-item.active .history-item-text{color:var(--blue);}
+.history-del{opacity:0;font-size:.75rem;color:var(--muted);padding:.15rem .35rem;border-radius:4px;transition:all .2s;flex-shrink:0;cursor:pointer;line-height:1;}
+.history-item:hover .history-del{opacity:1;}
+.history-del:hover{background:rgba(248,113,113,.2);color:var(--red);}
+.sidebar-empty{text-align:center;padding:2rem 1rem;color:var(--muted);font-size:.8rem;line-height:1.6;}
 
-        /* Classe ajoutée en JS pour faire trembler la carte au moment du hack */
-        .card.compromised {
-            animation: glitch-shake 0.15s infinite;
-        }
+.main{flex:1;display:flex;flex-direction:column;overflow:hidden;min-width:0;}
 
-        h2 {
-            margin-bottom: 25px;
-            font-size: 26px; /* Légèrement agrandi pour l'équilibre visuel */
-            font-weight: 700; /* Plus d'impact sur le titre */
-            letter-spacing: -0.02em; /* Rendu plus moderne */
-            background: linear-gradient(135deg, #a78bfa, #f472b6);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
+header{
+  position:relative;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:.75rem 1.2rem;
+  background:rgba(7,9,15,.88);backdrop-filter:blur(24px);
+  border-bottom:1px solid var(--border);flex-shrink:0;gap:.5rem;
+  min-height:56px;
+}
+.header-left{display:flex;align-items:center;gap:.55rem;z-index:1;}
+.header-right{display:flex;align-items:center;gap:.6rem;z-index:1;}
 
-        .checkbox-container {
-            text-align: left;
-            margin-bottom: 30px;
-        }
+.header-center{
+  position:absolute;left:50%;top:50%;
+  transform:translate(-50%,-50%);
+  display:flex;align-items:center;
+  pointer-events:none;z-index:0;
+}
+.datetime-pill{
+  display:flex;align-items:center;gap:.55rem;
+  padding:.32rem 1rem;
+  border-radius:999px;
+  position:relative;
+  white-space:nowrap;
+  background:rgba(7,9,15,.7);
+}
+.datetime-pill::before{
+  content:'';
+  position:absolute;inset:0;
+  border-radius:999px;
+  padding:1px;
+  background:linear-gradient(135deg,rgba(110,168,254,.5),rgba(167,139,250,.5),rgba(244,114,182,.5));
+  -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
+  -webkit-mask-composite:xor;
+  mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
+  mask-composite:exclude;
+}
+.datetime-pill::after{
+  content:'';
+  position:absolute;inset:-2px;
+  border-radius:999px;
+  background:linear-gradient(135deg,rgba(110,168,254,.07),rgba(167,139,250,.07),rgba(244,114,182,.07));
+  filter:blur(6px);
+  z-index:-1;
+}
+.dt-date{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:.7rem;font-weight:600;
+  letter-spacing:.05em;
+  background:linear-gradient(90deg,#6ea8fe,#a78bfa);
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+.dt-sep{
+  width:1px;height:12px;
+  background:linear-gradient(180deg,rgba(110,168,254,.3),rgba(244,114,182,.3));
+  flex-shrink:0;
+}
+.dt-time{
+  font-family:'Space Grotesk',sans-serif;
+  font-size:.84rem;font-weight:700;
+  letter-spacing:.08em;
+  background:linear-gradient(90deg,#a78bfa,#f472b6);
+  -webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;
+  animation:clockGlow 2s ease-in-out infinite;
+}
+@keyframes clockGlow{
+  0%,100%{filter:drop-shadow(0 0 3px rgba(167,139,250,.3));}
+  50%{filter:drop-shadow(0 0 8px rgba(244,114,182,.5));}
+}
 
-        .checkbox-item {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 18px;
-            cursor: pointer;
-            font-size: 14px;
-            line-height: 1.6; /* Amélioration de la lisibilité des longs blocs de texte */
-            letter-spacing: 0.01em;
-            color: #9ca3af;
-            transition: color 0.2s ease;
-        }
+.sidebar-toggle-btn{width:32px;height:32px;border-radius:8px;border:1px solid var(--border);background:rgba(255,255,255,.04);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:all .2s;color:var(--muted);flex-shrink:0;}
+.sidebar-toggle-btn:hover{border-color:rgba(110,168,254,.3);color:var(--blue);background:rgba(110,168,254,.08);}
+.sidebar-toggle-btn svg{width:15px;height:15px;}
 
-        .checkbox-item:hover {
-            color: #e5e7eb;
-        }
+.logo{display:flex;align-items:center;gap:.6rem;font-family:'Space Grotesk',sans-serif;font-size:1.05rem;font-weight:700;letter-spacing:-.02em;cursor:pointer;user-select:none;transition:opacity .2s;}
+.logo:hover{opacity:.85;}
+.logo-svg{width:28px;height:28px;animation:glow-pulse 3s ease-in-out infinite;}
+@keyframes glow-pulse{0%,100%{filter:drop-shadow(0 0 6px rgba(110,168,254,.5))}50%{filter:drop-shadow(0 0 14px rgba(167,139,250,.7))}}
+.grad-text{background:var(--grad);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;}
 
-        .checkbox-item input {
-            margin-top: 3px;
-            margin-right: 14px;
-            min-width: 18px;
-            min-height: 18px;
-            cursor: pointer;
-            accent-color: #a78bfa;
-        }
+.status-pill{display:flex;align-items:center;gap:.4rem;font-size:.68rem;font-weight:500;color:var(--cyan);background:rgba(52,211,153,.08);border:1px solid rgba(52,211,153,.2);padding:.22rem .65rem;border-radius:999px;}
+.status-dot{width:5px;height:5px;border-radius:50%;background:var(--cyan);animation:blink 2s infinite;}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.api-status-pill{display:flex;align-items:center;gap:.4rem;font-size:.68rem;font-weight:500;color:var(--cyan);background:rgba(52,211,153,.08);border:1px solid rgba(52,211,153,.2);padding:.22rem .65rem;border-radius:999px;}
+.api-status-dot{width:5px;height:5px;border-radius:50%;background:var(--cyan);animation:blink 2s infinite;}
+.api-status-pill.err{color:var(--red);background:rgba(248,113,113,.08);border-color:rgba(248,113,113,.2);}
+.api-status-pill.err .api-status-dot{background:var(--red);animation:none;}
+.api-status-pill.warn{color:var(--amber);background:rgba(251,191,36,.08);border-color:rgba(251,191,36,.2);}
+.api-status-pill.warn .api-status-dot{background:var(--amber);}
 
-        .btn-access {
-            display: inline-block;
-            width: 100%;
-            padding: 15px;
-            font-size: 15px;
-            font-weight: 600;
-            letter-spacing: 0.02em;
-            color: white;
-            background: linear-gradient(135deg, #7c3aed 0%, #c084fc 100%);
-            border: none;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 4px 15px rgba(124, 58, 237, 0.3);
-        }
+.hero{text-align:center;padding:2.5rem 2rem 1.5rem;flex-shrink:0;transition:opacity .4s ease,height .4s ease,padding .4s ease;}
+.hero.hidden{opacity:0;height:0;padding:0;overflow:hidden;pointer-events:none;}
+.hero h1{font-family:'Space Grotesk',sans-serif;font-size:clamp(1.7rem,3.5vw,2.6rem);font-weight:700;letter-spacing:-.04em;line-height:1.1;margin-bottom:.55rem;}
+.hero p{color:var(--soft);font-size:.92rem;font-weight:300;max-width:400px;margin:0 auto 1.4rem;line-height:1.7;}
+.chips{display:flex;flex-wrap:wrap;gap:.4rem;justify-content:center;}
+.chip{padding:.35rem .8rem;border-radius:999px;background:rgba(255,255,255,.04);border:1px solid var(--border);font-size:.77rem;color:var(--soft);cursor:pointer;transition:all .2s;backdrop-filter:blur(4px);}
+.chip:hover{background:rgba(110,168,254,.08);border-color:rgba(110,168,254,.3);color:var(--blue);}
 
-        .btn-access:hover:not(:disabled) {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(192, 132, 252, 0.5);
-            filter: brightness(1.1);
-        }
+#messages{flex:1;overflow-y:auto;padding:1.25rem 1rem;display:flex;flex-direction:column;gap:1rem;scroll-behavior:smooth;}
+#messages::-webkit-scrollbar{width:4px;}
+#messages::-webkit-scrollbar-thumb{background:rgba(255,255,255,.08);border-radius:4px;}
+.msg{display:flex;gap:.7rem;align-items:flex-start;max-width:760px;width:100%;margin:0 auto;animation:slideUp .3s ease both;}
+@keyframes slideUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.msg.user{flex-direction:row-reverse;}
+.av{width:30px;height:30px;border-radius:9px;flex-shrink:0;display:flex;align-items:center;justify-content:center;}
+.msg.ai .av{background:var(--grad);}
+.msg.user .av{background:rgba(110,168,254,.12);border:1px solid rgba(110,168,254,.2);}
+.av svg{width:15px;height:15px;}
+.bubble{max-width:82%;padding:.85rem 1.05rem;border-radius:16px;font-size:.9rem;line-height:1.75;word-break:break-word;}
+.msg.ai .bubble{background:rgba(13,17,32,.9);border:1px solid var(--border);border-top-left-radius:4px;backdrop-filter:blur(12px);}
+.msg.user .bubble{background:rgba(110,168,254,.1);border:1px solid rgba(110,168,254,.18);border-top-right-radius:4px;color:#c7deff;}
+.bubble p{margin:.3rem 0;}.bubble p:first-child{margin-top:0;}.bubble p:last-child{margin-bottom:0;}
+.bubble strong{color:#fff;font-weight:600;}
+.bubble em{color:var(--purp);font-style:italic;}
+.bubble code{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:5px;padding:.1rem .35rem;font-family:'Courier New',monospace;font-size:.83em;color:var(--cyan);}
+.bubble pre{background:rgba(0,0,0,.5);border:1px solid var(--border);border-radius:9px;padding:.9rem;overflow-x:auto;margin:.5rem 0;}
+.bubble pre code{background:none;border:none;padding:0;font-size:.8rem;color:var(--soft);}
+.bubble ul,.bubble ol{padding-left:1.3rem;margin:.4rem 0;}
+.bubble li{margin-bottom:.25rem;}
+.bubble h1,.bubble h2,.bubble h3{font-family:'Space Grotesk',sans-serif;font-weight:600;margin:.8rem 0 .35rem;color:#fff;line-height:1.3;}
+.bubble h1{font-size:1.15rem;}.bubble h2{font-size:1.05rem;}.bubble h3{font-size:.95rem;}
+.bubble.loading{display:flex;align-items:center;gap:5px;padding:.75rem 1.05rem;}
+.dot{width:6px;height:6px;border-radius:50%;animation:bounce .9s infinite;}
+.dot:nth-child(1){background:var(--blue);}
+.dot:nth-child(2){background:var(--purp);animation-delay:.15s;}
+.dot:nth-child(3){background:var(--pink);animation-delay:.3s;}
+@keyframes bounce{0%,80%,100%{transform:translateY(0)}40%{transform:translateY(-6px)}}
+.bubble img.gen-img{max-width:100%;border-radius:10px;margin-top:.5rem;border:1px solid var(--border);display:block;}
+.bubble img.user-img{max-width:220px;border-radius:8px;margin-top:.5rem;display:block;}
 
-        .btn-access:disabled {
-            background: #1f1f2e;
-            color: #4b5563;
-            cursor: not-allowed;
-            transform: none;
-            box-shadow: none;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-        }
+.log-line{max-width:760px;width:100%;margin:0 auto;animation:slideUp .2s ease both;}
+.log-entry{display:inline-flex;align-items:center;gap:.4rem;font-size:.7rem;font-family:monospace;padding:.22rem .55rem;border-radius:6px;background:rgba(255,255,255,.03);border:1px solid var(--border);}
+.log-entry.run{color:#38bdf8;border-color:rgba(56,189,248,.15);}
+.log-entry.ok{color:var(--cyan);border-color:rgba(52,211,153,.15);}
+.log-entry.warn{color:var(--amber);border-color:rgba(251,191,36,.15);}
+.log-entry.err{color:var(--red);border-color:rgba(248,113,113,.15);}
+.log-entry::before{content:'›';opacity:.6;}
 
-        /* Overlay pour les effets visuels */
-        .fade-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background-color: transparent;
-            opacity: 0;
-            pointer-events: none;
-            z-index: 9999;
-        }
+.input-wrap{flex-shrink:0;padding:.6rem 1rem 1rem;max-width:800px;width:100%;margin:0 auto;}
+.input-tools{display:flex;gap:.4rem;margin-bottom:.45rem;flex-wrap:wrap;}
+.tool-btn{display:flex;align-items:center;gap:.35rem;padding:.3rem .65rem;border-radius:8px;border:1px solid var(--border);background:rgba(255,255,255,.03);color:var(--muted);font-size:.72rem;cursor:pointer;transition:all .2s;}
+.tool-btn:hover{background:rgba(110,168,254,.08);border-color:rgba(110,168,254,.3);color:var(--blue);}
+.tool-btn svg{width:13px;height:13px;flex-shrink:0;}
+.tool-btn.active{background:rgba(167,139,250,.1);border-color:rgba(167,139,250,.3);color:var(--purp);}
+.input-box{display:flex;align-items:flex-end;gap:.65rem;background:rgba(13,17,32,.9);border:1px solid var(--border);border-radius:16px;padding:.75rem .9rem .75rem 1.1rem;backdrop-filter:blur(16px);transition:border-color .2s,box-shadow .2s;}
+.input-box:focus-within{border-color:rgba(110,168,254,.4);box-shadow:0 0 0 3px rgba(110,168,254,.06);}
+.img-preview{position:relative;display:none;flex-shrink:0;}
+.img-preview img{width:60px;height:60px;object-fit:cover;border-radius:8px;border:1px solid var(--border);display:block;}
+.img-preview-del{position:absolute;top:-5px;right:-5px;width:16px;height:16px;border-radius:50%;background:var(--red);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:.6rem;color:#fff;line-height:1;}
+textarea{flex:1;background:none;border:none;outline:none;color:var(--text);font-family:'Inter',sans-serif;font-size:.9rem;line-height:1.55;resize:none;min-height:36px;max-height:140px;vertical-align:bottom;}
+textarea::placeholder{color:var(--muted);}
+.input-actions{display:flex;align-items:center;gap:.4rem;flex-shrink:0;}
+.send-btn{width:36px;height:36px;flex-shrink:0;border-radius:10px;border:none;cursor:pointer;background:var(--grad);display:flex;align-items:center;justify-content:center;transition:transform .15s,opacity .15s,box-shadow .2s;}
+.send-btn:hover:not(:disabled){transform:scale(1.08);box-shadow:0 0 18px rgba(110,168,254,.4);}
+.send-btn:disabled{opacity:.3;cursor:not-allowed;}
+.send-btn svg{width:15px;height:15px;fill:#fff;}
+.hint{text-align:center;margin-top:.4rem;font-size:.67rem;color:var(--muted);}
+kbd{padding:.1rem .28rem;border-radius:4px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);font-size:.63rem;}
 
-        /* ÉTAPE 1 : Flash Méchant (Rouge saturé + effet lignes de glitch) */
-        .fade-overlay.evil-flash {
-            background: radial-gradient(circle, #ff003c 20%, #7a001e 100%);
-            opacity: 1;
-            pointer-events: auto;
-            background-size: 100% 4px;
-            background-image: linear-gradient(to bottom, rgba(255, 0, 60, 0.9) 50%, rgba(0, 0, 0, 0.4) 50%);
-        }
+.modal-overlay{position:fixed;inset:0;z-index:300;background:rgba(0,0,0,.7);backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center;animation:fadeIn .2s ease;}
+.modal-overlay.hidden{display:none;}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.modal-box{background:#0d1120;border:1px solid var(--border);border-radius:20px;width:min(540px,94vw);max-height:82vh;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 30px 80px rgba(0,0,0,.8);}
+.modal-header{display:flex;align-items:center;padding:1.1rem 1.4rem;border-bottom:1px solid var(--border);flex-shrink:0;}
+.modal-logo{display:flex;align-items:center;gap:.6rem;font-family:'Space Grotesk',sans-serif;font-size:1rem;font-weight:700;}
+.modal-close{margin-left:auto;width:28px;height:28px;border-radius:7px;border:1px solid var(--border);background:rgba(255,255,255,.04);cursor:pointer;display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:.9rem;transition:all .2s;flex-shrink:0;}
+.modal-close:hover{background:rgba(248,113,113,.1);border-color:rgba(248,113,113,.2);color:var(--red);}
+.modal-tabs{display:flex;border-bottom:1px solid var(--border);flex-shrink:0;}
+.modal-tab{flex:1;padding:.7rem .4rem;text-align:center;font-size:.75rem;font-weight:500;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;transition:all .2s;white-space:nowrap;}
+.modal-tab.active{color:var(--blue);border-bottom-color:var(--blue);}
+.modal-body{overflow-y:auto;padding:1.25rem 1.4rem;flex:1;}
+.modal-body::-webkit-scrollbar{width:3px;}
+.modal-body::-webkit-scrollbar-thumb{background:rgba(255,255,255,.08);border-radius:3px;}
+.modal-section{margin-bottom:1.3rem;}
+.modal-section:last-child{margin-bottom:0;}
+.modal-section h3{font-family:'Space Grotesk',sans-serif;font-size:.88rem;font-weight:600;color:#fff;margin-bottom:.45rem;}
+.modal-section p,.modal-section li{font-size:.82rem;color:var(--soft);line-height:1.7;}
+.modal-section ul{padding-left:1.1rem;margin-top:.3rem;}
+.modal-section li{margin-bottom:.25rem;}
+.warn-box{background:rgba(251,191,36,.06);border:1px solid rgba(251,191,36,.2);border-radius:10px;padding:.85rem 1rem;margin-top:.4rem;}
+.warn-box p{color:var(--amber);font-size:.82rem;line-height:1.6;}
+.model-api-grid{display:flex;flex-direction:column;gap:.5rem;margin-top:.5rem;}
+.model-api-row{display:flex;align-items:center;gap:.6rem;background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:10px;padding:.6rem .8rem;flex-wrap:wrap;}
+.model-api-provider{font-size:.7rem;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;min-width:78px;flex-shrink:0;}
+.model-api-select{flex:1;min-width:120px;background:rgba(255,255,255,.06);border:1px solid var(--border);border-radius:7px;color:var(--text);font-size:.8rem;padding:.3rem .5rem;outline:none;cursor:pointer;transition:border-color .2s;font-family:'Inter',sans-serif;}
+.model-api-select:focus{border-color:rgba(110,168,254,.4);}
+.model-api-select option{background:#0d1120;color:var(--text);}
+.model-api-apply{padding:.3rem .7rem;border-radius:7px;border:1px solid rgba(110,168,254,.3);background:rgba(110,168,254,.08);color:var(--blue);font-size:.75rem;cursor:pointer;transition:all .2s;white-space:nowrap;flex-shrink:0;}
+.model-api-apply:hover{background:rgba(110,168,254,.2);border-color:rgba(110,168,254,.5);}
+.model-active-badge{font-size:.67rem;padding:.12rem .42rem;border-radius:999px;background:rgba(52,211,153,.1);border:1px solid rgba(52,211,153,.25);color:var(--cyan);flex-shrink:0;}
+.model-current-box{background:rgba(110,168,254,.05);border:1px solid rgba(110,168,254,.12);border-radius:10px;padding:.7rem 1rem;margin-top:.3rem;}
+.model-current-box p{font-size:.82rem;color:var(--soft);line-height:1.8;}
 
-        /* ÉTAPE 2 : Fondu au noir d'exactement 1 seconde (1.0s) */
-        .fade-overlay.fade-black {
-            background-color: #000000;
-            opacity: 1;
-            pointer-events: auto;
-            transition: background-color 1.0s cubic-bezier(0.25, 1, 0.5, 1);
-        }
-    </style>
+@media(max-width:700px){
+  .header-center{display:none;}
+  .modal-tab{font-size:.68rem;padding:.6rem .25rem;}
+}
+</style>
 </head>
 <body>
 
-    <div id="overlay" class="fade-overlay"></div>
+<div id="intro-screen">
+  <div class="intro-logo">
+    <svg viewBox="0 0 32 32" fill="none">
+      <defs><linearGradient id="lgI" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#6ea8fe"/><stop offset="50%" stop-color="#a78bfa"/><stop offset="100%" stop-color="#f472b6"/></linearGradient></defs>
+      <path d="M16 3C16 3 9 10 9 16C9 22 16 29 16 29C16 29 23 22 23 16C23 10 16 3 16 3Z" fill="url(#lgI)" opacity=".9"/>
+      <path d="M3 16C3 16 10 9 16 9C22 9 29 16 29 16C29 16 22 23 16 23C10 23 3 16 3 16Z" fill="url(#lgI)" opacity=".6"/>
+    </svg>
+    <span class="intro-grad">TALCO INTELLIGENCE</span>
+  </div>
+</div>
 
-    <div class="card" id="mainCard">
-        <h2>Talco Intelligence</h2>
-         
-        <div class="checkbox-container">
-            <label class="checkbox-item">
-                <input type="checkbox" id="cond1" onchange="checkConditions()">
-                <span>J'accepte les conditions d'utilisation de Talco-Intelligence. Je m'engage à respecter le fonctionnement ainsi que ces failles. J'accepte d'utiliser Talco-Intelligence avec honnêteté à l'égard des clés API.</span>
-            </label>
-             
-            <label class="checkbox-item">
-                <input type="checkbox" id="cond2" onchange="checkConditions()">
-                <span>Je confirme transmettre à Talco-Intelligence mes fichiers personnels, mes discussions privés, mon historique associé à mon compte principale, ma géolocalisation, mes données de suivi de santé, mon gestionnaire de mot de passe, mes fichiers de sauvegarde ainsi que mes coordonnés bancaire.</span>
-            </label>
-        </div>
+<div class="bg-img"></div>
+<div class="bg-overlay"></div>
+<div class="sidebar-backdrop" id="sidebarBackdrop" onclick="closeSidebar()"></div>
 
-        <button id="submitBtn" class="btn-access" disabled onclick="startTransition()">
-            Accéder
-        </button>
+<div class="app">
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <span class="sidebar-title">Historique</span>
+    <div class="sidebar-header-right">
+      <button class="new-chat-btn" onclick="newChat()">+ Nouveau</button>
+      <button class="sidebar-close-btn" onclick="closeSidebar()">✕</button>
     </div>
+  </div>
+  <div class="sidebar-body" id="historyList">
+    <div class="sidebar-empty" id="historyEmpty">Aucune conversation<br>pour l'instant.</div>
+  </div>
+</aside>
 
-    <script>
-        function checkConditions() {
-            const cond1 = document.getElementById('cond1').checked;
-            const cond2 = document.getElementById('cond2').checked;
-            const btn = document.getElementById('submitBtn');
+<div class="main">
+<header>
+  <div class="header-left">
+    <button class="sidebar-toggle-btn" onclick="toggleSidebar()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <rect x="3" y="3" width="18" height="18" rx="2"/>
+        <line x1="9" y1="3" x2="9" y2="21"/>
+      </svg>
+    </button>
+    <div class="logo" onclick="openLogoModal()">
+      <svg class="logo-svg" viewBox="0 0 32 32" fill="none">
+        <defs><linearGradient id="lg" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#6ea8fe"/><stop offset="50%" stop-color="#a78bfa"/><stop offset="100%" stop-color="#f472b6"/></linearGradient></defs>
+        <path d="M16 3C16 3 9 10 9 16C9 22 16 29 16 29C16 29 23 22 23 16C23 10 16 3 16 3Z" fill="url(#lg)" opacity=".9"/>
+        <path d="M3 16C3 16 10 9 16 9C22 9 29 16 29 16C29 16 22 23 16 23C10 23 3 16 3 16Z" fill="url(#lg)" opacity=".6"/>
+      </svg>
+      <span>TALCO<span class="grad-text">INTELLIGENCE</span></span>
+    </div>
+  </div>
 
-            btn.disabled = !(cond1 && cond2);
-        }
+  <div class="header-center">
+    <div class="datetime-pill">
+      <span class="dt-date" id="dtDate">—</span>
+      <span class="dt-sep"></span>
+      <span class="dt-time" id="dtTime">—</span>
+    </div>
+  </div>
 
-        function startTransition() {
-            const overlay = document.getElementById('overlay');
-            const card = document.getElementById('mainCard');
-             
-            // 1. Déclenche le flash méchant rouge strié ET fait trembler violemment l'interface
-            overlay.classList.add('evil-flash');
-            card.classList.add('compromised');
+  <div class="header-right">
+    <div class="api-status-pill" id="apiStatusPill">
+      <div class="api-status-dot"></div>
+      <span id="apiStatusLabel">APIs actives</span>
+    </div>
+    <div class="status-pill"><div class="status-dot"></div>En ligne</div>
+  </div>
+</header>
 
-            // 2. Après un flash très court (150ms), basculement vers le fondu au noir qui dure 1 seconde (1000ms)
-            setTimeout(() => {
-                overlay.classList.remove('evil-flash');
-                overlay.classList.add('fade-black');
-            }, 150); 
+<section class="hero" id="hero">
+  <h1>Bonjour,<br><span class="grad-text">que puis-je faire pour toi ?</span></h1>
+  <p>Pose une question, explore des idées — Talco-Intelligence est là.</p>
+  <div class="chips">
+    <div class="chip" onclick="fillPrompt('Comment fonctionne l\'intelligence artificielle ?')">Comment fonctionne l'IA ?</div>
+    <div class="chip" onclick="fillPrompt('Donne-moi 5 idées de projets web créatifs')">Idées de projets web</div>
+    <div class="chip" onclick="fillPrompt('Écris un texte percutant pour présenter mon activité en ligne')">Texte de présentation</div>
+    <div class="chip" onclick="activateImgGen()">🎨 Générer une image</div>
+    <div class="chip" onclick="activateImgAnalysis()">🔍 Analyser une image</div>
+  </div>
+</section>
 
-            // 3. Redirection à la fin précise du fondu au noir (150ms + 1000ms = 1150ms)
-            setTimeout(() => {
-                window.location.href = "https://6s9h2o98sq2v69n2aq6sb2h69f4qa96v1b65f.netlify.app/";
-            }, 1150);
-        }
-    </script>
+<div id="messages"></div>
 
+<div class="input-wrap">
+  <div class="input-tools">
+    <button class="tool-btn" id="btnImgGen" onclick="toggleImgGen()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+      Générer image
+    </button>
+    <button class="tool-btn" id="btnImgAnalysis" onclick="triggerImgUpload()">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+      Analyser image
+    </button>
+  </div>
+  <div class="input-box">
+    <div class="img-preview" id="imgPreview">
+      <img id="imgPreviewThumb" src="" alt=""/>
+      <button class="img-preview-del" onclick="clearImg()">✕</button>
+    </div>
+    <textarea id="prompt" placeholder="Écris ton message…" rows="1"
+      onkeydown="handleKey(event)" oninput="autoResize(this)"></textarea>
+    <div class="input-actions">
+      <input type="file" id="fileInput" accept="image/*" style="display:none" onchange="handleFileSelect(event)"/>
+      <button class="send-btn" id="sendBtn" onclick="sendMessage()">
+        <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+      </button>
+    </div>
+  </div>
+  <p class="hint"><kbd>Enter</kbd> envoyer &nbsp;·&nbsp; <kbd>Shift+Enter</kbd> nouvelle ligne</p>
+</div>
+</div>
+</div>
+
+<div class="modal-overlay hidden" id="logoModal" onclick="closeModalOutside(event)">
+  <div class="modal-box">
+    <div class="modal-header">
+      <div class="modal-logo">
+        <svg width="22" height="22" viewBox="0 0 32 32" fill="none">
+          <defs><linearGradient id="lg2" x1="0" y1="0" x2="32" y2="32" gradientUnits="userSpaceOnUse"><stop offset="0%" stop-color="#6ea8fe"/><stop offset="50%" stop-color="#a78bfa"/><stop offset="100%" stop-color="#f472b6"/></linearGradient></defs>
+          <path d="M16 3C16 3 9 10 9 16C9 22 16 29 16 29C16 29 23 22 23 16C23 10 16 3 16 3Z" fill="url(#lg2)" opacity=".9"/>
+          <path d="M3 16C3 16 10 9 16 9C22 9 29 16 29 16C29 16 22 23 16 23C10 23 3 16 3 16Z" fill="url(#lg2)" opacity=".6"/>
+        </svg>
+        <span>TALCO<span class="grad-text">INTELLIGENCE</span></span>
+      </div>
+      <button class="modal-close" onclick="closeLogoModal()">✕</button>
+    </div>
+    <div class="modal-tabs">
+      <div class="modal-tab active" id="tab1" onclick="switchTab(1)">📖 Utilisation</div>
+      <div class="modal-tab" id="tab2" onclick="switchTab(2)">⚠️ Avertissements</div>
+      <div class="modal-tab" id="tab3" onclick="switchTab(3)">⚙️ Modèles API</div>
+    </div>
+    <div class="modal-body" id="tabContent"></div>
+  </div>
+</div>
+
+<script>
+function safeAtob(s){
+  try{s=s.replace(/%2F/g,'/').replace(/%2B/g,'+').replace(/%3D/g,'=').trim();while(s.length%4!==0)s+='=';return atob(s);}catch(e){return'';}
+}
+const CONFIG={
+  openrouter:[
+    safeAtob("c2stb3ItdjEtMzRhZjgyNTU3OGM3ZTZkZDhiMGU3Y2JjMTQzMmJhN2UyYjM2MGQ5ZmNmZmRjMmI3ZDljMzYyZDQ1ZTc3Mjg3MQ=="),
+    safeAtob("c2stb3ItdjEtMjc0NzhjY2FkOTY0ZjAwYTA1ZWU1OGI5OTUwNGQ5ZmIyYjEwOTA1MDMzNzIzNDg0NzQxZGNmMjE4M2M2YWY5OA=="),
+    safeAtob("c2stb3ItdjEtYjMzZmQ0MzY4ZDI2ODNlYjk3YjRhZTQwZTc5ZDI5NmFjYzg0YTg0NGMwY2NiODhiYmM1YjhiYzZhOTU4YzNkNQ==")
+  ].filter(Boolean),
+  gemini:[
+    safeAtob("QVEuQWI4Uk42TFFQNVhVVDdlci1KbE9jWUlFYmhUNG83SGkyME5TRDZzem1GVl85dTQwRWc="),
+    safeAtob("QVEuQWI4Uk42SlZNU3Q3MUlYekpCV1VMRWZCNFg4bDZoZGt2Z1YybnFXVzhTT2lIbGxRaVE="),
+    safeAtob("QVEuQWI4Uk42SmlIT1JybEtqZGNQbW5DSEVUbjlJS1laYVdRSnV0ZWxWRVkyR0x4Sm9SQTVBCg=="),
+    safeAtob("QVEuQWI4Uk42S0JXN3ZuQkZYZ1JWNHd6azY3UDViUlNMM3VNV2hsczFOOTJPam9VZ3c=")
+  ].filter(Boolean)
+};
+const MODELS={
+  openrouter:[
+    {id:'openai/gpt-4o-mini',label:'🟢 GPT-4o Mini'},
+    {id:'openai/gpt-4o',label:'🟢 GPT-4o'},
+    {id:'openai/o3-mini',label:'🟢 o3 Mini'},
+    {id:'anthropic/claude-3.5-haiku',label:'🟣 Claude 3.5 Haiku'},
+    {id:'anthropic/claude-3.7-sonnet',label:'🟣 Claude 3.7 Sonnet'},
+    {id:'google/gemini-2.0-flash-001',label:'🔵 Gemini 2.0 Flash'},
+    {id:'google/gemini-2.5-flash-preview-05-20',label:'🔵 Gemini 2.5 Flash'},
+    {id:'meta-llama/llama-3.3-70b-instruct',label:'🦙 Llama 3.3 70B'},
+    {id:'meta-llama/llama-3.1-8b-instruct:free',label:'🦙 Llama 3.1 8B (gratuit)'},
+    {id:'mistralai/mistral-7b-instruct:free',label:'⚡ Mistral 7B (gratuit)'},
+    {id:'mistralai/mixtral-8x7b-instruct',label:'⚡ Mixtral 8x7B'},
+    {id:'deepseek/deepseek-chat',label:'🐋 DeepSeek Chat'},
+    {id:'deepseek/deepseek-r1:free',label:'🐋 DeepSeek R1 (gratuit)'},
+    {id:'qwen/qwen-2.5-72b-instruct',label:'🔶 Qwen 2.5 72B'},
+  ],
+  gemini:[
+    {id:'gemini-2.5-flash',label:'✦ Gemini 2.5 Flash'},
+    {id:'gemini-2.5-pro',label:'✦ Gemini 2.5 Pro'},
+    {id:'gemini-2.0-flash',label:'✦ Gemini 2.0 Flash'},
+    {id:'gemini-1.5-pro',label:'✦ Gemini 1.5 Pro'},
+    {id:'gemini-1.5-flash',label:'✦ Gemini 1.5 Flash'},
+  ]
+};
+let chatStarted=false,imgGenMode=false,pendingImg=null;
+let conversations=[],currentConvId=null,currentMessages=[];
+let activeProvider='openrouter',activeModel=MODELS.openrouter[0].id;
+
+const DAYS=['Dim','Lun','Mar','Mer','Jeu','Ven','Sam'];
+const MONTHS=['jan','fév','mar','avr','mai','jun','jul','aoû','sep','oct','nov','déc'];
+function updateClock(){
+  const n=new Date();
+  document.getElementById('dtDate').textContent=DAYS[n.getDay()]+' '+n.getDate()+' '+MONTHS[n.getMonth()];
+  document.getElementById('dtTime').textContent=String(n.getHours()).padStart(2,'0')+':'+String(n.getMinutes()).padStart(2,'0')+':'+String(n.getSeconds()).padStart(2,'0');
+}
+updateClock();setInterval(updateClock,1000);
+
+function init(){loadHistory();}
+function getProvider(){return activeProvider;}
+function getModel(){return activeModel;}
+function setApiStatus(state,label){
+  const pill=document.getElementById('apiStatusPill');
+  pill.className='api-status-pill'+(state==='ok'?'':' '+state);
+  document.getElementById('apiStatusLabel').textContent=label||'APIs actives';
+}
+function openSidebar(){document.getElementById('sidebar').classList.add('open');document.getElementById('sidebarBackdrop').classList.add('open');}
+function closeSidebar(){document.getElementById('sidebar').classList.remove('open');document.getElementById('sidebarBackdrop').classList.remove('open');}
+function toggleSidebar(){document.getElementById('sidebar').classList.contains('open')?closeSidebar():openSidebar();}
+function loadHistory(){
+  try{conversations=JSON.parse(localStorage.getItem('talco_history')||'[]');}catch(e){conversations=[];}
+  if(!Array.isArray(conversations))conversations=[];renderHistory();
+}
+function saveHistory(){try{localStorage.setItem('talco_history',JSON.stringify(conversations));}catch(e){}}
+function renderHistory(){
+  const list=document.getElementById('historyList');
+  const empty=document.getElementById('historyEmpty');
+  Array.from(list.children).forEach(el=>{if(el!==empty)el.remove();});
+  if(!conversations.length){empty.style.display='block';return;}
+  empty.style.display='none';
+  const now=Date.now();
+  const todayC=conversations.filter(c=>(now-c.ts)<86400000);
+  const olderC=conversations.filter(c=>(now-c.ts)>=86400000);
+  function grp(label,items){
+    if(!items.length)return;
+    const g=document.createElement('div');g.className='history-group';
+    const lbl=document.createElement('span');lbl.className='history-label';lbl.textContent=label;
+    g.appendChild(lbl);items.forEach(c=>g.appendChild(makeHistoryItem(c)));list.appendChild(g);
+  }
+  grp("Aujourd'hui",todayC);grp("Précédent",olderC);
+}
+function makeHistoryItem(conv){
+  const item=document.createElement('div');
+  item.className='history-item'+(conv.id===currentConvId?' active':'');
+  const icon=document.createElement('span');icon.className='history-item-icon';icon.textContent='💬';
+  const txt=document.createElement('span');txt.className='history-item-text';txt.textContent=conv.title||'Conversation';
+  const del=document.createElement('span');del.className='history-del';del.textContent='🗑';
+  del.addEventListener('click',e=>{e.stopPropagation();deleteConv(conv.id);});
+  item.appendChild(icon);item.appendChild(txt);item.appendChild(del);
+  item.addEventListener('click',()=>{loadConv(conv.id);closeSidebar();});
+  return item;
+}
+function loadConv(id){
+  const conv=conversations.find(c=>c.id===id);if(!conv)return;
+  currentConvId=id;currentMessages=conv.messages?conv.messages.slice():[];
+  document.getElementById('messages').innerHTML='';chatStarted=false;
+  document.getElementById('hero').classList.remove('hidden');
+  (conv.messages||[]).forEach(m=>{if(m.role==='user')addMsg('user',m.text);else addMsg('ai',m.text);});
+  renderHistory();
+}
+function deleteConv(id){conversations=conversations.filter(c=>c.id!==id);if(currentConvId===id)newChat();saveHistory();renderHistory();}
+function newChat(){currentConvId=null;currentMessages=[];chatStarted=false;document.getElementById('messages').innerHTML='';document.getElementById('hero').classList.remove('hidden');renderHistory();closeSidebar();}
+function createConv(title){const id='c'+Date.now();const conv={id,title:title||'Conversation',ts:Date.now(),messages:[]};conversations.unshift(conv);currentConvId=id;saveHistory();renderHistory();}
+function pushMsg(role,text){if(!currentConvId)return;const conv=conversations.find(c=>c.id===currentConvId);if(!conv)return;if(!conv.messages)conv.messages=[];conv.messages.push({role,text});currentMessages=conv.messages.slice();saveHistory();}
+function escHtml(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function toggleImgGen(){imgGenMode=!imgGenMode;document.getElementById('btnImgGen').classList.toggle('active',imgGenMode);document.getElementById('prompt').placeholder=imgGenMode?"Décris l'image à générer…":"Écris ton message…";}
+function activateImgGen(){if(!imgGenMode)toggleImgGen();document.getElementById('prompt').focus();if(!chatStarted){chatStarted=true;document.getElementById('hero').classList.add('hidden');}}
+function triggerImgUpload(){document.getElementById('fileInput').click();}
+function activateImgAnalysis(){document.getElementById('fileInput').click();}
+function handleFileSelect(e){
+  const file=e.target.files[0];if(!file)return;
+  const reader=new FileReader();
+  reader.onload=ev=>{
+    pendingImg={base64:ev.target.result.split(',')[1],type:file.type,dataUrl:ev.target.result};
+    document.getElementById('imgPreview').style.display='block';
+    document.getElementById('imgPreviewThumb').src=ev.target.result;
+    document.getElementById('prompt').placeholder="Que veux-tu savoir sur cette image ?";
+    document.getElementById('prompt').focus();
+    if(!chatStarted){chatStarted=true;document.getElementById('hero').classList.add('hidden');}
+  };
+  reader.readAsDataURL(file);e.target.value='';
+}
+function clearImg(){pendingImg=null;document.getElementById('imgPreview').style.display='none';document.getElementById('imgPreviewThumb').src='';document.getElementById('prompt').placeholder='Écris ton message…';}
+function autoResize(el){el.style.height='auto';el.style.height=Math.min(el.scrollHeight,140)+'px';}
+function handleKey(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMessage();}}
+function fillPrompt(t){const ta=document.getElementById('prompt');ta.value=t;autoResize(ta);ta.focus();}
+const AI_SVG=`<svg viewBox="0 0 24 24" fill="none"><path d="M12 2C12 2 10.5 8 8 10C5.5 12 2 12 2 12C2 12 5.5 12 8 14C10.5 16 12 22 12 22C12 22 13.5 16 16 14C18.5 12 22 12 22 12C22 12 18.5 12 16 10C13.5 8 12 2 12 2Z" fill="white" opacity=".9"/></svg>`;
+const USER_SVG=`<svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="8" r="4" fill="#6ea8fe" opacity=".8"/><path d="M4 20C4 17 7.6 14 12 14C16.4 14 20 17 20 20" stroke="#6ea8fe" stroke-width="2" stroke-linecap="round" opacity=".8"/></svg>`;
+function addMsg(role,content,isLoading=false){
+  const wrap=document.getElementById('messages');
+  if(!chatStarted){chatStarted=true;document.getElementById('hero').classList.add('hidden');}
+  const div=document.createElement('div');div.className=`msg ${role}`;
+  const av=document.createElement('div');av.className='av';av.innerHTML=role==='ai'?AI_SVG:USER_SVG;
+  const bubble=document.createElement('div');
+  bubble.className=isLoading?'bubble loading':'bubble';
+  if(isLoading)bubble.innerHTML='<div class="dot"></div><div class="dot"></div><div class="dot"></div>';
+  else if(role==='user')bubble.textContent=content;
+  else bubble.innerHTML=renderMD(content);
+  div.appendChild(av);div.appendChild(bubble);
+  wrap.appendChild(div);wrap.scrollTop=wrap.scrollHeight;
+  return bubble;
+}
+function addMsgWithImg(role,content,imgDataUrl){
+  const bubble=addMsg(role,content);
+  if(imgDataUrl){const img=document.createElement('img');img.src=imgDataUrl;img.className='user-img';bubble.appendChild(img);}
+  return bubble;
+}
+function addLog(text,status){
+  const wrap=document.getElementById('messages');
+  const line=document.createElement('div');line.className='log-line';
+  const entry=document.createElement('div');entry.className=`log-entry ${status}`;entry.textContent=text;
+  line.appendChild(entry);wrap.appendChild(line);wrap.scrollTop=wrap.scrollHeight;
+  return line;
+}
+function renderMD(text){
+  if(!text)return'';
+  const codeBlocks=[];
+  text=text.replace(/```[\w]*\n?([\s\S]*?)```/g,(m,code)=>{
+    const clean=escHtml(code.replace(/^\n|\n$/g,''));
+    codeBlocks.push(`<pre><code>${clean}</code></pre>`);
+    return`\x00CODE${codeBlocks.length-1}\x00`;
+  });
+  text=text.replace(/`([^`\n]+)`/g,(m,c)=>`<code>${escHtml(c)}</code>`);
+  text=text.replace(/^### (.+)$/gm,'<h3>$1</h3>');
+  text=text.replace(/^## (.+)$/gm,'<h2>$1</h2>');
+  text=text.replace(/^# (.+)$/gm,'<h1>$1</h1>');
+  text=text.replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>');
+  text=text.replace(/\*(.+?)\*/g,'<em>$1</em>');
+  text=text.replace(/^[\-\*] (.+)$/gm,'<li>$1</li>');
+  text=text.replace(/(<li>.*<\/li>(\n|$))+/g,m=>`<ul>${m}</ul>`);
+  const lines=text.split('\n');const result=[];let buf=[];
+  const blockTags=/^<(h[1-6]|ul|ol|li|pre|blockquote)/;
+  for(const line of lines){
+    const trimmed=line.trim();
+    if(!trimmed){if(buf.length){result.push('<p>'+buf.join(' ')+'</p>');buf=[];}}
+    else if(blockTags.test(trimmed)||trimmed.startsWith('\x00CODE')){if(buf.length){result.push('<p>'+buf.join(' ')+'</p>');buf=[];}result.push(trimmed);}
+    else{buf.push(trimmed);}
+  }
+  if(buf.length)result.push('<p>'+buf.join(' ')+'</p>');
+  text=result.join('\n');
+  text=text.replace(/\x00CODE(\d+)\x00/g,(_,i)=>codeBlocks[parseInt(i)]);
+  return text;
+}
+async function sendMessage(){
+  const input=document.getElementById('prompt');const btn=document.getElementById('sendBtn');
+  const text=input.value.trim();if(!text&&!pendingImg)return;
+  const displayText=text||(imgGenMode?"🎨 Génération d'image":"🔍 Analyse d'image");
+  if(!currentConvId)createConv(text.substring(0,42)||'Conversation');
+  if(pendingImg)addMsgWithImg('user',text||'Analyse cette image :',pendingImg.dataUrl);
+  else addMsg('user',displayText);
+  pushMsg('user',displayText);
+  input.value='';autoResize(input);btn.disabled=true;
+  if(imgGenMode&&!pendingImg){await generateImage(text);btn.disabled=false;input.focus();return;}
+  const loadBubble=addMsg('ai','',true);
+  try{
+    let reply='';
+    if(getProvider()==='gemini')reply=await callGemini(text,pendingImg,getModel());
+    else reply=await callOpenRouter(text,pendingImg,getModel());
+    clearImg();loadBubble.className='bubble';loadBubble.innerHTML='';
+    pushMsg('ai',reply);typeText(loadBubble,reply);
+    setApiStatus('ok',getModel().split('/').pop().substring(0,24));
+  }catch(err){
+    loadBubble.className='bubble';
+    loadBubble.innerHTML=`<p style="color:var(--red)">Erreur : ${escHtml(err.message||String(err))}</p>`;
+    setApiStatus('err','Erreur API');clearImg();
+  }
+  btn.disabled=false;input.focus();
+}
+async function callGemini(text,img,model){
+  const keys=CONFIG.gemini;if(!keys.length)throw new Error('Aucune clé Gemini disponible.');
+  const baseParts=[];if(text)baseParts.push({text});if(img)baseParts.push({inlineData:{mimeType:img.type,data:img.base64}});
+  const history=(currentMessages||[]).slice(-11,-1);const contents=[];
+  history.forEach(m=>{contents.push({role:m.role==='ai'?'model':'user',parts:[{text:m.text||''}]});});
+  contents.push({role:'user',parts:baseParts});let lastErr=null;
+  for(let i=0;i<keys.length;i++){
+    const logRow=addLog(`Gemini — clé ${i+1}/${keys.length}…`,'run');
+    try{
+      const res=await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${keys[i]}`,
+        {method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({contents,generationConfig:{temperature:0.9,maxOutputTokens:4096}})});
+      const data=await res.json();logRow.remove();
+      if(data.error)throw new Error(data.error.message||'Erreur Gemini');
+      if(i>0)addLog(`Basculement clé ${i+1} réussi ✓`,'ok');
+      return data?.candidates?.[0]?.content?.parts?.[0]?.text??'Pas de réponse.';
+    }catch(e){try{logRow.remove();}catch(_){}lastErr=e;if(i<keys.length-1)addLog(`Clé ${i+1} échouée → bascule sur clé ${i+2}`,'warn');}
+  }
+  throw new Error(`Toutes les clés Gemini ont échoué. ${lastErr?.message||''}`);
+}
+async function callOpenRouter(text,img,model){
+  const keys=CONFIG.openrouter;if(!keys.length)throw new Error('Aucune clé OpenRouter disponible.');
+  const userContent=[];if(text)userContent.push({type:'text',text});if(img)userContent.push({type:'image_url',image_url:{url:`data:${img.type};base64,${img.base64}`}});
+  const history=(currentMessages||[]).slice(-11,-1);const messages=[];
+  history.forEach(m=>{messages.push({role:m.role==='ai'?'assistant':'user',content:m.text||''});});
+  messages.push({role:'user',content:img?userContent:(text||'')});let lastErr=null;
+  for(let i=0;i<keys.length;i++){
+    const logRow=addLog(`OpenRouter — clé ${i+1}/${keys.length} · ${model.split('/').pop()}…`,'run');
+    try{
+      const res=await fetch('https://openrouter.ai/api/v1/chat/completions',{
+        method:'POST',
+        headers:{'Content-Type':'application/json','Authorization':`Bearer ${keys[i]}`,'HTTP-Referer':window.location.href,'X-Title':'Talco-Intelligence'},
+        body:JSON.stringify({model,messages,temperature:0.9,max_tokens:4096})
+      });
+      const data=await res.json();logRow.remove();
+      if(data.error)throw new Error(data.error.message||'Erreur OpenRouter');
+      if(i>0)addLog(`Basculement clé ${i+1} réussi ✓`,'ok');
+      return data.choices?.[0]?.message?.content??'Pas de réponse.';
+    }catch(e){
+      try{logRow.remove();}catch(_){}lastErr=e;
+      if(i<keys.length-1){addLog(`Clé ${i+1} échouée → bascule sur clé ${i+2}`,'warn');await new Promise(r=>setTimeout(r,300));}
+    }
+  }
+  throw new Error(`Toutes les clés OpenRouter ont échoué. ${lastErr?.message||''}`);
+}
+async function generateImage(prompt){
+  const loadBubble=addMsg('ai','',true);const logRow=addLog('Génération image en cours…','run');
+  const url=`https://image.pollinations.ai/prompt/${encodeURIComponent(prompt)}?width=768&height=512&seed=${Math.floor(Math.random()*99999)}&nologo=true`;
+  try{
+    await new Promise((res,rej)=>{const img=new Image();img.onload=res;img.onerror=rej;img.src=url;});
+    try{logRow.remove();}catch(_){}
+    loadBubble.className='bubble';
+    loadBubble.innerHTML=`<p>Image générée pour <em>${escHtml(prompt)}</em> :</p><img class="gen-img" src="${url}" alt="${escHtml(prompt)}"/>`;
+    pushMsg('ai',`[Image générée] ${prompt}`);document.getElementById('messages').scrollTop=99999;
+  }catch(e){
+    try{logRow.remove();}catch(_){}
+    loadBubble.className='bubble';
+    loadBubble.innerHTML=`<p style="color:var(--red)">Erreur de génération. Reformule le prompt et réessaie.</p>`;
+  }
+}
+function typeText(el,text,i=0){
+  if(i<text.length){
+    if(i===0)el._raw='';el._raw+=text[i];
+    if(i%4===0||i===text.length-1){el.innerHTML=renderMD(el._raw);document.getElementById('messages').scrollTop=99999;}
+    setTimeout(()=>typeText(el,text,i+1),6);
+  }
+}
+const TAB_CONTENT={
+  1:`<div class="modal-section"><h3>🤖 À propos</h3><p>Talco-Intelligence est un assistant IA multimodal connecté à OpenRouter (GPT-4o, Claude, Llama, Mistral…) et Google Gemini avec basculement automatique entre les clés.</p></div>
+<div class="modal-section"><h3>🔑 Clés API</h3><p>Les clés sont configurées et actives. Si l'une échoue, le système bascule automatiquement sur la suivante.</p></div>
+<div class="modal-section"><h3>🎨 Générer une image</h3><p>Active le bouton <strong>Générer image</strong>, décris ce que tu veux voir. Utilise Pollinations AI (gratuit).</p></div>
+<div class="modal-section"><h3>🔍 Analyser une image</h3><p>Clique sur <strong>Analyser image</strong> pour uploader une photo. Compatible Gemini Vision et modèles multimodaux OpenRouter.</p></div>
+<div class="modal-section"><h3>📂 Historique</h3><p>Clique sur l'icône sidebar (en haut à gauche) pour accéder à tes conversations. Tout est sauvegardé dans ton navigateur.</p></div>`,
+  2:`<div class="modal-section"><h3>⚠️ Limites de l'IA</h3><p>Les modèles peuvent produire des informations inexactes. Ne les utilise pas comme seule référence pour des sujets médicaux, juridiques ou financiers.</p></div>
+<div class="modal-section"><div class="warn-box"><p>⚠️ <strong>IMPORTANT</strong><br>LES CLÉS ONT UN USAGE STRICTEMENT RÉSERVÉ POUR UN USAGE PRIVÉ DANS LE CADRE DE TALCO-INTELLIGENCE.</p></div></div>
+<div class="modal-section"><h3>🔒 Confidentialité</h3><p>Les messages sont traités par Google ou OpenRouter. L'historique est stocké uniquement dans ton navigateur.</p></div>
+<div class="modal-section"><h3>📋 Usage responsable</h3><ul><li>Ne pas générer de contenu illégal ou nuisible.</li><li>Respecter les CGU des providers.</li><li>Outil fourni <em>tel quel</em>, sans garantie de disponibilité.</li></ul></div>`,
+  3:null
+};
+function buildModelsTab(){
+  const orOpts=MODELS.openrouter.map(m=>`<option value="${m.id}"${activeProvider==='openrouter'&&activeModel===m.id?' selected':''}>${m.label}</option>`).join('');
+  const gmOpts=MODELS.gemini.map(m=>`<option value="${m.id}"${activeProvider==='gemini'&&activeModel===m.id?' selected':''}>${m.label}</option>`).join('');
+  return`<div class="modal-section"><h3>⚙️ Sélection du modèle actif</h3><p style="margin-bottom:.75rem">Choisis le provider et le modèle utilisé pour répondre. Le changement est immédiat.</p>
+<div class="model-api-grid">
+<div class="model-api-row"><span class="model-api-provider">🟠 OpenRouter</span><select class="model-api-select" id="modalOrSelect">${orOpts}</select><button class="model-api-apply" onclick="applyModel('openrouter')">Utiliser</button>${activeProvider==='openrouter'?'<span class="model-active-badge">✓ actif</span>':''}</div>
+<div class="model-api-row"><span class="model-api-provider">🔵 Gemini</span><select class="model-api-select" id="modalGmSelect">${gmOpts}</select><button class="model-api-apply" onclick="applyModel('gemini')">Utiliser</button>${activeProvider==='gemini'?'<span class="model-active-badge">✓ actif</span>':''}</div>
+</div></div>
+<div class="modal-section"><h3>📌 Modèle actif</h3><div class="model-current-box"><p>Provider : <strong style="color:var(--blue)">${activeProvider==='openrouter'?'🟠 OpenRouter':'🔵 Google Gemini'}</strong></p><p>Modèle : <strong style="color:var(--purp)">${activeModel}</strong></p></div></div>`;
+}
+function applyModel(provider){
+  const sel=document.getElementById(provider==='openrouter'?'modalOrSelect':'modalGmSelect');
+  if(!sel)return;activeProvider=provider;activeModel=sel.value;
+  setApiStatus('ok',activeModel.split('/').pop().substring(0,24));
+  document.getElementById('tabContent').innerHTML=buildModelsTab();
+}
+let activeTab=1;
+function openLogoModal(){document.getElementById('logoModal').classList.remove('hidden');switchTab(activeTab);}
+function closeLogoModal(){document.getElementById('logoModal').classList.add('hidden');}
+function closeModalOutside(e){if(e.target===document.getElementById('logoModal'))closeLogoModal();}
+function switchTab(n){activeTab=n;[1,2,3].forEach(i=>document.getElementById('tab'+i).classList.toggle('active',i===n));document.getElementById('tabContent').innerHTML=n===3?buildModelsTab():TAB_CONTENT[n];}
+init();
+</script>
 </body>
 </html>
